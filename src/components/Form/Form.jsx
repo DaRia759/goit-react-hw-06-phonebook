@@ -28,7 +28,7 @@ export const Form = () => {
         } 
         dispatch(addContact({ name, number }));
         toast.success(`${name} has been added to contacts`)
-        return reset;
+        reset();
     };
 
     const reset = () => {
@@ -46,8 +46,8 @@ export const Form = () => {
                 title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                 required
                 value={name}
+                defaultValue=''
                 onChange={handleChange}
-                // defaultValue=''
             />
             </label>
             <label className={css.label}><span className={css.span}>Number</span>
@@ -58,8 +58,8 @@ export const Form = () => {
                     title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                     required
                     value={number}
+                    defaultValue=''
                     onChange={handleChange}
-                    // defaultValue=''
                     />
             </label>
             <button className={css.button} type="submit">Add contact</button>
