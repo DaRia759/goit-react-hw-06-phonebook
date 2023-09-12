@@ -8,20 +8,22 @@ const ContactItem = () => {
     const filter = useSelector(getFilter);
     const dispatch = useDispatch();
 
-    const visibleContacts = () => {
-        return contacts.filter((contact) =>
-            contact.name.toLowerCase().includes(filter.toLowerCase())
-        );
-    };
-
+    
     const onDelete = contactId => {
         dispatch(deleteContact(contactId))
     };
-    return (
-        <div>
-            {visibleContacts.length === 0 ? (
-                <p>No contacts found.</p>
-            ) : (
+
+    const contactsList = () => {
+        const visibleContacts =
+            contacts.length > 0
+                ? filter
+                    ? contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()))
+                    : contacts
+                : [];
+        
+        
+            return visibleContacts.length > 0 ? (
+            <div>
                 <ul>
                     {visibleContacts.map((contact) => (
                         <li key={contact.id} className={css.contact}>
@@ -30,14 +32,25 @@ const ContactItem = () => {
                                 type='button'
                                 onClick={() => onDelete(contact.id)}
                             >
-                            Delete
+                                Delete
                             </button>
                         </li>
                     ))}
                 </ul>
-            )}
+            </div>
+        ) : (
+            <p>There are no contacts in your phonebook</p>
+        );
+        };
+
+    
+    return (
+        <div>
+            <ul>{contactsList()}</ul>
         </div>
     );
 };
 
+
+    
 export default ContactItem;

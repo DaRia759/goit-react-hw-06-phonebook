@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import css from './Form.module.css';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from "react-redux";
-import { getContacts, addContact } from "redux/contactsSlice";
+import { getContacts } from "redux/contactsSlice";
+import { addContact } from "redux/contactsSlice";
 
 export const Form = () => {
     const [name, setName] = useState('');
@@ -38,29 +39,32 @@ export const Form = () => {
 
     return (
         <form className={css.form} onSubmit={handleFormSubmit}>
-                        <label className={css.label}><span className={css.span}>Name</span>
-            <input className={css.input}
+            <label className={css.label} htmlFor="name"><span className={css.span}>Name</span>
+                <input
+                id="name"
+                className={css.input}
                 type="text"
                 name="name"
                 pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                 title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                 required
                 value={name}
-                defaultValue=''
                 onChange={handleChange}
-            />
+                />
+
             </label>
-            <label className={css.label}><span className={css.span}>Number</span>
-                <input className={css.inputNumber}
+            <label className={css.label} htmlFor="number"><span className={css.span}>Number</span>
+                <input
+                    id="number"
+                    className={css.inputNumber}
                     type="tel"
                     name="number"
                     pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                     title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                     required
                     value={number}
-                    defaultValue=''
                     onChange={handleChange}
-                    />
+                />
             </label>
             <button className={css.button} type="submit">Add contact</button>
         </form>
