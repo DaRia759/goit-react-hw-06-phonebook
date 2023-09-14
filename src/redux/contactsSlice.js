@@ -26,7 +26,7 @@ const contactsSlice = createSlice({
 export const { addContact, deleteContact, filterContacts } = contactsSlice.actions;
 
 const persistConfig = {
-  key: 'contacts',
+  key: 'root',
   storage,
   whitelist: ['contacts'],
 };

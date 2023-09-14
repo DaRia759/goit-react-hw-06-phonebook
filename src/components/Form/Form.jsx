@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import css from './Form.module.css';
+import { nanoid } from "nanoid";
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from "react-redux";
 import { getContacts } from "redux/contactsSlice";
@@ -11,7 +12,10 @@ export const Form = () => {
     const dispatch = useDispatch();
     const contacts = useSelector(getContacts);
 
-    const handleChange = e => {
+        const nameId = nanoid();
+        const numberId = nanoid();
+
+     const handleChange = e => {
         const { name, value } = e.target;
         if (name === 'name') {
             setName(value);
@@ -27,9 +31,9 @@ export const Form = () => {
             toast.error(`${name} is already in contacts`);
             return;
         } 
-        dispatch(addContact({ name, number }));
+        dispatch(addContact({ name, number, id: nanoid() }));
         toast.success(`${name} has been added to contacts`);
-        reset();
+        return reset();
     };
 
     const reset = () => {
@@ -39,9 +43,9 @@ export const Form = () => {
 
     return (
         <form className={css.form} onSubmit={handleFormSubmit}>
-            <label className={css.label} htmlFor="name"><span className={css.span}>Name</span>
+            <label className={css.label} htmlFor={nameId}><span className={css.span}>Name</span>
                 <input
-                    id="name" 
+                    id={nameId}
                     className={css.input}
                     type="text"
                     name="name"
@@ -52,9 +56,9 @@ export const Form = () => {
                     onChange={handleChange}
                 />
             </label>
-            <label className={css.label} htmlFor="number"><span className={css.span}>Number</span>
+            <label className={css.label} htmlFor={numberId}><span className={css.span}>Number</span>
                 <input
-                    id="number" 
+                    id={numberId} 
                     className={css.inputNumber}
                     type="tel"
                     name="number"
