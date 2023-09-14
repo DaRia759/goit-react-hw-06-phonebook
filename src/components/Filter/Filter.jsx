@@ -14,15 +14,16 @@ const Filter = () => {
 
   return (
     <label className={css.findZone}>
-    Find contacts by name
+      Find contacts by name
       <input
         placeholder='Search...'
         type="text"
         value={filter}
         onChange={handleFilterChange}
-        className={css.input} />
-  </label>
-  )
+        className={css.input}
+      />
+    </label>
+  );
 };
 
 export default Filter;
