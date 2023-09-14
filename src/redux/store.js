@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import {
     persistStore,
     FLUSH,
@@ -14,7 +14,8 @@ export const store = configureStore({
     reducer: {
         contacts: contactsReducer,
     },
-    middleware: getDefaultMiddleware({
+    middleware: getDefaultMiddleware =>
+        getDefaultMiddleware({
         serializableCheck: {
             ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
