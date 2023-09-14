@@ -22,7 +22,7 @@ export const Form = () => {
 
     const handleFormSubmit = e => {
         e.preventDefault();
-        if (contacts.find((contact) => contact.name.toLowerCase() === name.toLowerCase())
+        if (contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase())
         ) {
             toast.error(`${name} is already in contacts`);
             return;
